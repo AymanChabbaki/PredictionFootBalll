@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import '../src/TeamsList.css';
-import logos from '../src/assets/image.png';
+import logos from '../src/assets/wac1.png';
 
 const TeamsList = ({ league, onSelectTeams, onBack }) => {
   const [teams, setTeams] = useState([]);
