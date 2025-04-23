@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import '../src/TeamsList.css';
+import logos from '../src/assets/image.png';
 
 const TeamsList = ({ league, onSelectTeams, onBack }) => {
   const [teams, setTeams] = useState([]);
@@ -40,20 +41,23 @@ const TeamsList = ({ league, onSelectTeams, onBack }) => {
         if (!response.data || !response.data.teams) {
           throw new Error('No teams data received');
         }
-        
-        // Transform the API response to match our expected format
-        const formattedTeams = response.data.teams.map(team => ({
-          team: {
-            id: team.idTeam,
-            name: team.strTeam,
-            logo: team.strBadge,
-            stadium: team.strStadium,
-            country: team.strCountry,
-            description: team.strDescriptionEN,
-            founded: team.intFormedYear,
-            jersey: team.strEquipment
-          }
-        }));
+        const formattedTeams = response.data.teams.map(team => {
+          // Determine logo inside the map function for each team
+          const logo = team.strTeam === 'Wydad Casablanca' ? logos : team.strBadge;
+          
+          return {
+            team: {
+              id: team.idTeam,
+              name: team.strTeam,
+              logo: logo, // Use the dynamically determined logo
+              stadium: team.strStadium,
+              country: team.strCountry,
+              description: team.strDescriptionEN,
+              founded: team.intFormedYear,
+              jersey: team.strEquipment
+            }
+          };
+        });
         
         setTeams(formattedTeams);
       } catch (err) {
