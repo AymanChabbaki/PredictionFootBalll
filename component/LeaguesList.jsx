@@ -40,10 +40,15 @@ const leaguesData = [
   }
 ];
 
-const LeaguesList = ({ onSelectLeague }) => {
+const LeaguesList = ({ onSelectLeague, onBack }) => {
   return (
     <div className="leagues-container">
-      <h2>Select a League</h2>
+      <div className="leagues-header">
+        <button className="back-button" onClick={onBack}>
+          &larr; Back To Home
+        </button>
+        <h2>Select a League</h2>
+      </div>
       <div className="leagues-grid">
         {leaguesData.map(league => (
           <div 
@@ -56,20 +61,7 @@ const LeaguesList = ({ onSelectLeague }) => {
           </div>
         ))}
       </div>
-      <div className="scroll-indicator">
-            <svg style={{
-              display: 'block',
-              margin: '0 auto'
-            }} width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-              <path d="M12 5v14M19 12l-7 7-7-7" strokeWidth="2" strokeLinecap="round" />
-            </svg>
-            <footer className="fade-in web">
-              Développé par : <br />
-              Ayman Chabbaki - <a href="https://www.linkedin.com/in/ayman-chabbaki-10aa80281/">LinkedIn</a> | Afyf Badeddine - <a href="https://www.linkedin.com/in/afyf-badreddine-235a07284/">LinkedIn</a> | Malak Houali - <a href="https://www.linkedin.com/in/malak-houali-701a61282/">LinkedIn</a>
-              </footer>
-          </div>
     </div>
-    
   );
 };
 

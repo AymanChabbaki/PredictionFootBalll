@@ -1,4 +1,13 @@
-/* Common styles used across components */
+/* Add this at the very top */
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+}
+
+/* Keep all your existing styles below exactly as they are */
 .fade-in {
     animation: fadeIn 0.6s ease-out;
   }
@@ -90,3 +99,158 @@
     background: #ccc;
     cursor: not-allowed;
   }
+  /* Landing Page Styles */
+.landing-container {
+  font-family: Segoe UI, sans-serif;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  margin: 0; /* Changed from -8px to 0 */
+  padding: 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.landing-content {
+  position: relative;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: white;
+  z-index: 2;
+}
+
+.football-image-container {
+  position: fixed; /* Changed from absolute to fixed */
+  top: 0;
+  left: 0;
+  width: 100vw; /* Changed from 100% to 100vw */
+  height: 100vh; /* Changed from 100% to 100vh */
+  z-index: 1;
+  margin: 0;
+  padding: 0;
+}
+
+.football-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block; 
+}
+
+.image-overlay {
+  position: fixed; /* Changed from absolute to fixed */
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(to bottom, #000000b3, #0000004d, #000000b3);
+  z-index: 1;
+}
+.back-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius);
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  margin-bottom: 1.5rem;
+  transition: all 0.2s ease;
+  
+  /* Light mode colors */
+  background-color: transparent;
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
+  box-shadow: none;
+}
+
+.back-button:hover {
+  background-color: var(--hover-bg);
+  transform: translateX(-2px);
+}
+
+.landing-text {
+  position: relative;
+  z-index: 3;
+  padding: 0 20px;
+  max-width: 800px;
+}
+
+.main-title {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.subtitle {
+  font-size: 1.5rem;
+  margin-bottom: 2rem;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+  animation: fadeIn .8s ease-out 1.2s both;
+}
+@media (max-width: 768px) {
+  .web{
+    font-size: 7px;
+  }
+}
+
+.start-button {
+  position: relative;
+  padding: 1rem 2.5rem;
+  font-size: 1.1rem;
+  font-weight: 500;
+  background: transparent;
+  color: #fff;
+  border: 2px solid rgba(255, 255, 255, .3);
+  border-radius: 50px;
+  cursor: pointer;
+  overflow: hidden;
+  transition: all .5s ease;
+  animation: fadeIn .8s ease-out 1.2s both;
+}
+
+/* Animation classes */
+.fade-in {
+  opacity: 1;
+  transition: opacity 1s ease-in;
+}
+
+.fade-out {
+  opacity: 0;
+  transition: opacity 1s ease-out;
+}
+
+/* Scroll Indicator (Optional) */
+.scroll-indicator {
+  position: absolute;
+  bottom: 0px;
+  left: 50%;
+  width: 100%;
+  text-align: center;
+  transform: translateX(-50%);
+  animation: bounce 2s infinite;
+  z-index: 2;
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% { transform: translateY(0) translateX(-50%); }
+  40% { transform: translateY(-20px) translateX(-50%); }
+  60% { transform: translateY(-10px) translateX(-50%); }
+}
+
+.landing-footer, .app-footer {
+  color: white;
+  bottom: 0; 
+  width: 100%; 
+  padding: 10px 0; 
+  z-index: 10; 
+}
+
+.landing-footer a, .app-footer a {
+  color: #4CAF50;
+}

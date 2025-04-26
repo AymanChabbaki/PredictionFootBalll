@@ -14,11 +14,7 @@
       padding: 0px !important;
   }
   }
-  @media (max-width: 768px) {
-    .web{
-      font-size: 7px;
-    }
-}
+
 @keyframes fadeIn {
   from { opacity: 0; }
   to { opacity: 1; }
