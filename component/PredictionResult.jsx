@@ -13,30 +13,30 @@ const PredictionResult = ({ league, homeTeam, awayTeam, onBack }) => {
       try {
         setLoading(true);
         setError(null);
-    
+
         // 1. Get standings to determine current round (max intPlayed from top 10)
         const standingsResponse = await axios.get(
           `https://www.thesportsdb.com/api/v1/json/3/lookuptable.php?l=${league.id}&s=2024-2025`
         );
-    
+
         if (!standingsResponse.data?.table) {
           throw new Error('Could not fetch standings data');
         }
-    
+
         // Get current round = max games played by top 10 teams
         const currentRound = Math.max(
           ...standingsResponse.data.table
             .slice(0, 10)
             .map(team => parseInt(team.intPlayed || 0))
         );
-    
+
         if (currentRound === 0) throw new Error('Could not determine current round');
-    
+
         // 2. Fetch last 5 rounds (currentRound-4 to currentRound)
         const allMatches = [];
         for (let round = currentRound; round > currentRound - 5; round--) {
           if (round < 1) break; // Don't fetch round 0 or negative
-            
+
           try {
             const response = await axios.get(
               `https://www.thesportsdb.com/api/v1/json/3/eventsround.php?id=${league.id}&r=${round}&s=2024-2025`
@@ -48,7 +48,7 @@ const PredictionResult = ({ league, homeTeam, awayTeam, onBack }) => {
             console.error(`Error fetching round ${round}:`, err);
           }
         }
-    
+
         // 3. Calculate exact goals for each team in these matches
         const calculateGoals = (teamName) => {
           return allMatches.reduce((total, match) => {
@@ -61,14 +61,14 @@ const PredictionResult = ({ league, homeTeam, awayTeam, onBack }) => {
             return total;
           }, 0);
         };
-    
+
         const homeLast5Goals = calculateGoals(homeTeam.name);
         const awayLast5Goals = calculateGoals(awayTeam.name);
-    
+
         // 4. Get team stats from standings
         const homeStats = standingsResponse.data.table.find(t => t.strTeam === homeTeam.name) || {};
         const awayStats = standingsResponse.data.table.find(t => t.strTeam === awayTeam.name) || {};
-        
+
         // Prepare features for both models
         console.log('Sending to backend:', {
           league: league.key,
@@ -80,13 +80,13 @@ const PredictionResult = ({ league, homeTeam, awayTeam, onBack }) => {
             // Raw stats from API - don't calculate derived features here
             homeGoalsFor: parseInt(homeStats.intGoalsFor || 0),
             homeGoalsAgainst: parseInt(homeStats.intGoalsAgainst || 0),
-            homeGD:parseInt(homeStats.intGoalDifference || 0),
+            homeGD: parseInt(homeStats.intGoalDifference || 0),
             homeWins: parseInt(homeStats.intWin || 0),
             homePlayed: parseInt(homeStats.intPlayed || 1),
             homeRank: parseInt(homeStats.intRank || 0),
             awayGoalsFor: parseInt(awayStats.intGoalsFor || 0),
             awayGoalsAgainst: parseInt(awayStats.intGoalsAgainst || 0),
-            awayGD:parseInt(awayStats.intGoalDifference || 0),
+            awayGD: parseInt(awayStats.intGoalDifference || 0),
             awayWins: parseInt(awayStats.intWin || 0),
             awayPlayed: parseInt(awayStats.intPlayed || 1),
             awayRank: parseInt(awayStats.intRank || 0)
@@ -101,13 +101,13 @@ const PredictionResult = ({ league, homeTeam, awayTeam, onBack }) => {
           // Raw stats from API - don't calculate derived features here
           homeGoalsFor: parseInt(homeStats.intGoalsFor || 0),
           homeGoalsAgainst: parseInt(homeStats.intGoalsAgainst || 0),
-          homeGD:parseInt(homeStats.intGoalDifference || 0),
+          homeGD: parseInt(homeStats.intGoalDifference || 0),
           homeWins: parseInt(homeStats.intWin || 0),
           homePlayed: parseInt(homeStats.intPlayed || 1),
           homeRank: parseInt(homeStats.intRank || 0),
           awayGoalsFor: parseInt(awayStats.intGoalsFor || 0),
           awayGoalsAgainst: parseInt(awayStats.intGoalsAgainst || 0),
-          awayGD:parseInt(awayStats.intGoalDifference || 0),
+          awayGD: parseInt(awayStats.intGoalDifference || 0),
           awayWins: parseInt(awayStats.intWin || 0),
           awayPlayed: parseInt(awayStats.intPlayed || 1),
           awayRank: parseInt(awayStats.intRank || 0)
@@ -242,15 +242,45 @@ const PredictionResult = ({ league, homeTeam, awayTeam, onBack }) => {
               )}
             </div>
           </div>
-
           <div className="probability-meter">
             <h4>Win Probability</h4>
-            <div className="meter">
-              <div className="meter-fill home" style={{ width: `${combinedPrediction.probability.home}%` }}>
-                {combinedPrediction.probability.home}%
+
+            {/* Home Win Probability */}
+            <div className="probability-line">
+              <span className="team-label">Home</span>
+              <div className="meter">
+                <div
+                  className="meter-fill home"
+                  style={{ width: `${combinedPrediction.probability.home}%` }}
+                >
+                  {combinedPrediction.probability.home}%
+                </div>
               </div>
-              <div className="meter-fill away" style={{ width: `${combinedPrediction.probability.away}%` }}>
-                {combinedPrediction.probability.away}%
+            </div>
+
+            {/* Draw Probability */}
+            <div className="probability-line">
+              <span className="team-label">Draw</span>
+              <div className="meter">
+                <div
+                  className="meter-fill draw"
+                  style={{ width: `${combinedPrediction.probability.draw}%` }}
+                >
+                  {combinedPrediction.probability.draw}%
+                </div>
+              </div>
+            </div>
+
+            {/* Away Win Probability */}
+            <div className="probability-line">
+              <span className="team-label">Away</span>
+              <div className="meter">
+                <div
+                  className="meter-fill away"
+                  style={{ width: `${combinedPrediction.probability.away}%` }}
+                >
+                  {combinedPrediction.probability.away}%
+                </div>
               </div>
             </div>
           </div>

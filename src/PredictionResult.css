@@ -38,6 +38,7 @@
 .team-card {
   max-height: 180px;
   min-width: auto;
+
 }
 @media (max-width: 345px) {
   .score {
@@ -46,6 +47,11 @@
 }
 .teams-display {
   gap: 1rem !important;
+}
+.meter-fill {
+  justify-content: space-between !important;
+  padding-right: 25px  !important;
+  font-size: 9px !important;
 }
 .goal-stats {
   display: block !important;
@@ -62,6 +68,7 @@
 @media (max-width: 360px) {
   .score {
   font-size: 2.6rem !important;
+
 }
 }
 
@@ -117,39 +124,7 @@
   object-fit: contain;
 }
 
-.probability-meter {
-  margin-bottom: 2rem;
-}
 
-.meter {
-  display: flex;
-  height: 30px;
-  border-radius: 15px;
-  overflow: hidden;
-  margin-top: 1rem;
-}
-
-.meter-fill {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
-  font-weight: bold;
-  height: 100%;
-  transition: width 1s ease-out;
-}
-
-.meter-fill.home {
-  background-color: #1a3e72;
-}
-
-.meter-fill.draw {
-  background-color: #666;
-}
-
-.meter-fill.away {
-  background-color: #d32f2f;
-}
 
 .goal-predictions {
   margin-top: 2rem;
@@ -176,3 +151,42 @@
   font-size: 1.2rem;
   color: #666;
 }
+.probability-meter {
+  width: 100%;
+}
+
+.probability-line {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.team-label {
+  width: 60px;
+  text-align: right;
+  padding-right: 10px;
+  font-weight: bold;
+}
+
+.meter {
+  flex-grow: 1;
+  height: 20px;
+  background-color: #eee;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.meter-fill {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 5px;
+  font-size: 12px;
+  color: white;
+  font-weight: bold;
+}
+
+.meter-fill.home { background-color: #4CAF50; }
+.meter-fill.draw { background-color: #FFC107; }
+.meter-fill.away { background-color: #F44336; }
