@@ -114,7 +114,7 @@ const PredictionResult = ({ league, homeTeam, awayTeam, onBack }) => {
         };
 
         // Send this to backend
-        const predictionResponse = await axios.post('https://flask-production-c9ee.up.railway.app/api/predict', {
+        const predictionResponse = await axios.post('https://huggingface.co/spaces/aymenenene/footballpredict/api/predict', {
           league: league.key,
           match_data: matchData
         });
