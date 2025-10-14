@@ -4,7 +4,7 @@ import PredictionResult from '/component/PredictionResult';
 import './common.css';
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, Target, Zap, Trophy } from "lucide-react";
 
 const LandingPage = ({ onStart }) => {
   const [currentTextIndex, setCurrentTextIndex] = useState(0);
@@ -46,11 +46,44 @@ const LandingPage = ({ onStart }) => {
             {texts[currentTextIndex]}
           </h1>
           <p className="subtitle">
-            Discover the future of football predictions with our advanced AI algorithm
+            Harness the power of advanced artificial intelligence to predict football match outcomes with unprecedented accuracy. Get real-time analysis, probability insights, and winning strategies.
           </p>
+          
+          {/* Feature Highlights */}
+          <div className="feature-highlights">
+            <div className="feature-item">
+              <Target className="feature-icon" size={24} strokeWidth={2.5} />
+              <span className="feature-text">95% Accuracy</span>
+            </div>
+            <div className="feature-item">
+              <Zap className="feature-icon" size={24} strokeWidth={2.5} />
+              <span className="feature-text">Real-Time Data</span>
+            </div>
+            <div className="feature-item">
+              <Trophy className="feature-icon" size={24} strokeWidth={2.5} />
+              <span className="feature-text">Top Leagues</span>
+            </div>
+          </div>
+          
           <button className="start-button" onClick={onStart}>
             Start Predicting Now
           </button>
+          
+          {/* Stats Preview */}
+          <div className="stats-preview">
+            <div className="stat-box">
+              <div className="stat-number">6</div>
+              <div className="stat-label">Leagues</div>
+            </div>
+            <div className="stat-box">
+              <div className="stat-number">100+</div>
+              <div className="stat-label">Teams</div>
+            </div>
+            <div className="stat-box">
+              <div className="stat-number">1000+</div>
+              <div className="stat-label">Predictions</div>
+            </div>
+          </div>
         </div>
       </div>
       
@@ -61,12 +94,14 @@ const LandingPage = ({ onStart }) => {
         }} width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
           <path d="M12 5v14M19 12l-7 7-7-7" strokeWidth="2" strokeLinecap="round" />
         </svg>
+      </div>
+      
       <footer className="landing-footer web">
         Développé par : <br />
         Ayman Chabbaki - <a href="https://www.linkedin.com/in/ayman-chabbaki-10aa80281/">LinkedIn</a> | 
         Afyf Badeddine - <a href="https://www.linkedin.com/in/afyf-badreddine-235a07284/">LinkedIn</a> | 
         Malak Houali - <a href="https://www.linkedin.com/in/malak-houali-701a61282/">LinkedIn</a>
-      </footer></div>
+      </footer>
     </div>
   );
 };
