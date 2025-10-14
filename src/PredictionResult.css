@@ -526,9 +526,50 @@
   }
 }
 
+/* Samsung Z Fold Unfolded (720px - 820px) */
+@media (min-width: 720px) and (max-width: 820px) {
+  .prediction-container h2 {
+    font-size: 2.3rem;
+  }
+  
+  .teams-display {
+    gap: 3rem;
+  }
+  
+  .team-card {
+    padding: 2rem;
+    min-width: 180px;
+  }
+  
+  .team-logo {
+    width: 100px;
+    height: 100px;
+  }
+  
+  .goal-stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .prediction-result {
+    padding: 2.5rem 2rem;
+  }
+}
+
 @media (max-width: 480px) {
-  .score {
-    font-size: 2.5rem;
+  .prediction-container {
+    padding: 1rem;
+  }
+  
+  .prediction-container h2 {
+    font-size: 1.8rem;
+  }
+  
+  .prediction-container h3 {
+    font-size: 1rem;
+  }
+  
+  .teams-display {
+    gap: 1.5rem;
   }
   
   .team-card {
@@ -539,5 +580,166 @@
   .team-logo {
     width: 70px;
     height: 70px;
+  }
+  
+  .team-card h3 {
+    font-size: 1.1rem;
+  }
+  
+  .vs {
+    font-size: 1.8rem;
+  }
+  
+  .score {
+    font-size: 2.5rem;
+  }
+  
+  .prediction-result {
+    padding: 1.5rem 1rem;
+  }
+  
+  .score-prediction, .winner-prediction, .probability-meter {
+    padding: 1.5rem;
+  }
+  
+  .goal-stat {
+    padding: 1rem;
+    font-size: 0.9rem;
+  }
+  
+  .goal-stat span:first-child {
+    font-size: 0.85rem;
+  }
+  
+  .goal-stat span:last-child {
+    font-size: 1.1rem;
+  }
+}
+
+/* Samsung Z Fold Folded (320px - 400px) */
+@media (max-width: 400px) {
+  .prediction-container {
+    padding: 0.75rem;
+  }
+  
+  .prediction-container h2 {
+    font-size: 1.5rem;
+    margin: 1rem 0;
+  }
+  
+  .prediction-container h3 {
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+  }
+  
+  .teams-display {
+    gap: 1rem;
+    flex-direction: column;
+    margin: 1.5rem 0;
+  }
+  
+  .team-card {
+    min-width: 100%;
+    max-width: 280px;
+    padding: 1.25rem 1rem;
+    margin: 0 auto;
+  }
+  
+  .team-logo {
+    width: 80px;
+    height: 80px;
+  }
+  
+  .team-card h3 {
+    font-size: 1rem;
+  }
+  
+  .vs {
+    font-size: 1.5rem;
+    order: 2;
+    margin: 0.5rem 0;
+  }
+  
+  .prediction-result {
+    padding: 1.25rem 0.75rem;
+    margin-top: 1.5rem;
+  }
+  
+  .score-prediction, .winner-prediction, .probability-meter {
+    padding: 1.25rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .score-prediction h3, .winner-prediction h3, .probability-meter h3 {
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+  }
+  
+  .score {
+    font-size: 2.2rem;
+  }
+  
+  .goal-predictions h3 {
+    font-size: 1.1rem;
+  }
+  
+  .goal-stats {
+    gap: 0.75rem;
+  }
+  
+  .goal-stat {
+    padding: 0.85rem;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+  
+  .goal-stat span:first-child {
+    font-size: 0.8rem;
+  }
+  
+  .goal-stat span:last-child {
+    font-size: 1.2rem;
+    align-self: flex-end;
+  }
+  
+  .probability-line {
+    margin-bottom: 1rem;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.5rem;
+  }
+  
+  .team-label {
+    min-width: auto;
+    text-align: left;
+    font-size: 0.8rem;
+  }
+  
+  .meter {
+    height: 25px;
+  }
+  
+  .meter-fill {
+    padding: 0 8px;
+    font-size: 0.7rem;
+  }
+  
+  .winner {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .winner h4 {
+    font-size: 1.4rem;
+  }
+  
+  .winner-logo {
+    width: 60px;
+    height: 60px;
+  }
+  
+  .loading {
+    font-size: 1.2rem;
   }
 }
