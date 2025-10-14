@@ -98,10 +98,7 @@ const LandingPage = ({ onStart }) => {
       
       <footer className="landing-footer web">
         Développé par : <br />
-        Ayman Chabbaki - <a href="https://www.linkedin.com/in/ayman-chabbaki-10aa80281/">LinkedIn</a> | 
-        Afyf Badeddine - <a href="https://www.linkedin.com/in/afyf-badreddine-235a07284/">LinkedIn</a> | 
-        Malak Houali - <a href="https://www.linkedin.com/in/malak-houali-701a61282/">LinkedIn</a>
-      </footer>
+        Ayman Chabbaki - <a href="https://ayman.chabbaki.tech">Portfolio</a>      </footer>
     </div>
   );
 };
